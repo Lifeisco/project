@@ -11,7 +11,7 @@ import math
 class CalculScr(Screen):
     def __init__(self, name='first'):
         super().__init__(name=name)
-        self.txt = Label(text="0", font_size=50, color=(1, 1, 1, 1))  # Белый текст
+        self.txt = Label(text="0", font_size=50, color=(1, 1, 1, 1))
         self.formula = "0"
         gl = GridLayout(cols=4, spacing=5, size_hint=(1, 0.8))
         bl = BoxLayout(orientation="vertical", spacing=5)
@@ -26,8 +26,8 @@ class CalculScr(Screen):
 
         for button_text in buttons:
             gl.add_widget(Button(text=button_text, on_press=self.button_pressed,
-                                 background_color=(0.4, 0.4, 0.4, 1),  # Серый цвет
-                                 color=(1, 1, 1, 1)))  # Белый текст
+                                 background_color=(0.4, 0.4, 0.4, 1),
+                                 color=(1, 1, 1, 1)))
 
         bl.add_widget(self.txt)
         bl.add_widget(gl)
@@ -40,7 +40,7 @@ class CalculScr(Screen):
             try:
                 self.formula = str(eval(self.formula))
                 self.txt.text = self.formula
-            except Exception as e:
+            except Exception:
                 self.formula = ''
                 self.txt.text = 'Error'
         elif button_text == 'C':
@@ -71,7 +71,7 @@ class CalculScr(Screen):
 
 class CalculApp(App):
     def build(self):
-        Window.clearcolor = (0.2, 0.2, 0.2, 1)  # Темно-серый цвет фона
+        Window.clearcolor = (0.2, 0.2, 0.2, 1)
         sm = ScreenManager()
         sm.add_widget(CalculScr(name='second'))
         return sm
